@@ -12,9 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Exercise;
+import seedu.address.model.person.Lab;
+import seedu.address.model.person.MilestoneLists;
+import seedu.address.model.person.MilestoneTracker;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,15 +33,41 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
-    /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
-     */
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<String> labTracker = MilestoneLists.getLabList()
+                    .getMilestones().stream().map(x -> "NOT_DONE").toList();
+    private final List<String> exerciseTracker = MilestoneLists.getExerciseList()
+            .getMilestones().stream().map(x -> "NOT_DONE").toList();
+
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("labTracker") List<String> labTracker,
+                             @JsonProperty("exerciseTracker") List<String> exerciseTracker) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        if (tags != null) {
+            this.tags.addAll(tags);
+        }
+        if (labTracker != null) {
+            this.labTracker.addAll(labTracker);
+        }
+        if (exerciseTracker != null) {
+            this.exerciseTracker.addAll(exerciseTracker);
+        }
+    }
+    @JsonCreator
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,7 +76,6 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
     }
-
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
@@ -54,28 +84,41 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+
+        // Tags
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+
+        // Lab tracker
+        labTracker.addAll(source.getLabTracker().getStatuses().stream()
+                .map(Enum::name)
+                .collect(Collectors.toList()));
+
+        // Exercise tracker
+        exerciseTracker.addAll(source.getExerciseTracker().getStatuses().stream()
+                .map(Enum::name)
+                .collect(Collectors.toList()));
     }
+
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        // Convert tags
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
 
+        // Validate core fields
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
+        };
         final Name modelName = new Name(name);
 
         if (phone == null) {
@@ -103,7 +146,27 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-    }
 
+        // Convert tracker strings → Status enums
+        List<Status> labStatuses = new ArrayList<>();
+        for (String s : labTracker) {
+            labStatuses.add(Status.valueOf(s));
+        }
+
+        List<Status> exerciseStatuses = new ArrayList<>();
+        for (String s : exerciseTracker) {
+            exerciseStatuses.add(Status.valueOf(s));
+        }
+
+        MilestoneTracker<Lab> modelLabTracker = labStatuses.isEmpty()
+                ? new MilestoneTracker<>(MilestoneLists.getLabList())
+                : new MilestoneTracker<>(labStatuses);
+
+        MilestoneTracker<Exercise> modelExerciseTracker = exerciseStatuses.isEmpty()
+                ? new MilestoneTracker<>(MilestoneLists.getExerciseList())
+                : new MilestoneTracker<>(exerciseStatuses);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelLabTracker, modelExerciseTracker);
+    }
 }

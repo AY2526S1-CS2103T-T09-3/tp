@@ -24,7 +24,11 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private MilestoneTracker<Exercise> exerciseTracker =
+            new MilestoneTracker<>(MilestoneLists.getExerciseList());
 
+    private MilestoneTracker<Lab> labTracker =
+            new MilestoneTracker<>(MilestoneLists.getLabList());
     /**
      * Every field must be present and not null.
      */
@@ -35,6 +39,32 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+        alternate constructor
+     */
+    public Person(Name modelName,
+                               Phone modelPhone,
+                               Email modelEmail,
+                               Address modelAddress,
+                               Set<Tag> modelTags,
+                               MilestoneTracker<Lab> modelLabTracker,
+                               MilestoneTracker<Exercise> modelExerciseTracker) {
+        requireAllNonNull(modelName,
+                 modelPhone,
+                 modelEmail,
+                 modelAddress,
+                 modelTags,
+                 modelLabTracker,
+                 modelExerciseTracker);
+        this.name = modelName;
+        this.phone = modelPhone;
+        this.email = modelEmail;
+        this.address = modelAddress;
+        this.tags.addAll(modelTags);
+        this.exerciseTracker = modelExerciseTracker;
+        this.labTracker = modelLabTracker;
     }
 
     public Name getName() {
@@ -113,5 +143,25 @@ public class Person {
                 .add("tags", tags)
                 .toString();
     }
+    public void setLabAttendance(boolean isAttended, int index) {
+        if (isAttended) {
+            labTracker.mark(index);
+        } else {
+            labTracker.unmark(index);
+        }
+    }
+    public void setExerciseCompletion(boolean isDone, int index) {
+        if (isDone) {
+            exerciseTracker.mark(index);
+        } else {
+            exerciseTracker.unmark(index);
+        }
+    }
 
+    public MilestoneTracker<Exercise> getExerciseTracker() {
+        return exerciseTracker;
+    }
+    public MilestoneTracker<Lab> getLabTracker() {
+        return labTracker;
+    }
 }
