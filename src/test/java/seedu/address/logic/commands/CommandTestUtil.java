@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB_USERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
@@ -42,6 +43,9 @@ public class CommandTestUtil {
     public static final String VALID_GITHUB_USERNAME_BOB = "Bob123";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_LAB_NUMBER_ONE = "1";
+    public static final String VALID_LAB_NUMBER_TWO = "2";
+    public static final String VALID_LAB_NUMBER_THREE = "3";
 
     public static final String STUDENTID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENTID_AMY;
     public static final String STUDENTID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENTID_BOB;
@@ -61,6 +65,9 @@ public class CommandTestUtil {
                                                         + VALID_GITHUB_USERNAME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String LAB_NUMBER_DESC_ONE = PREFIX_LAB_NUMBER + VALID_LAB_NUMBER_ONE;
+    public static final String LAB_NUMBER_DESC_TWO = PREFIX_LAB_NUMBER + VALID_LAB_NUMBER_TWO;
+    public static final String LAB_NUMBER_DESC_THREE = PREFIX_LAB_NUMBER + VALID_LAB_NUMBER_THREE;
 
     public static final String INVALID_STUDENTID_DESC = " " + PREFIX_STUDENTID + "B12345X"; // invalid format
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -70,6 +77,8 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUB_USERNAME_DESC = " "
                                 + PREFIX_GITHUB_USERNAME; // empty string not allowed for GitHub usernames
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_LAB_NUMBER_DESC = " "
+            + PREFIX_LAB_NUMBER + "0"; // '0' not allowed for Lab Number
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
