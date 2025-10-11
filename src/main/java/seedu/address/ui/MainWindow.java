@@ -188,6 +188,11 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
+            if (e instanceof CommandException) {
+                System.out.println("Command exception");
+            } else {
+                System.out.println("Parse exception");
+            }
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
