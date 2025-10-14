@@ -53,6 +53,7 @@ public class ArgumentTokenizer {
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
         }
+
         return positions;
     }
 

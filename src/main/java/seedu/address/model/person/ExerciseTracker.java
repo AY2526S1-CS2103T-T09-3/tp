@@ -61,46 +61,5 @@ public class ExerciseTracker {
     public void mark(Index index, Status status) {
         statuses.set(index.getZeroBased(), status);
     }
-
-    /**
-     * Returns true if a given string is a valid exercise tracker format.
-     */
-    public static boolean isValidExerciseTracker(String exerciseTrackerString) {
-        if (exerciseTrackerString == null) {
-            return false;
-        }
-
-        String trimmed = exerciseTrackerString.trim();
-        String[] parts = trimmed.split("\\s+");
-
-        // Each exercise entry has 3 parts (ex, <index>:, <status>)
-        if (parts.length != NUMBER_OF_EXERCISES * 3) {
-            return false;
-        }
-
-        for (int i = 0; i < NUMBER_OF_EXERCISES; i++) {
-            String exKeyword = parts[i * 3];
-            String indexWithColon = parts[i * 3 + 1];
-            String status = parts[i * 3 + 2];
-
-            // Must start with "ex"
-            if (!exKeyword.equals("ex")) {
-                return false;
-            }
-
-            // Must match index with colon, e.g. "0:", "1:", ...
-            if (!indexWithColon.equals(i + ":")) {
-                return false;
-            }
-
-            // Valid statuses only
-            if (!status.equals("N") && !status.equals("D")
-                    && !status.equals("I") && !status.equals("O")) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }
 

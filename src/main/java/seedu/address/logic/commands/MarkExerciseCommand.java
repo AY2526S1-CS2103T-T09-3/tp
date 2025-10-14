@@ -27,6 +27,9 @@ public class MarkExerciseCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "ei/ [EXERCISE INDEX]\n"
             + "s/ [EXERCISE STATUS]\n";
+
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
+            "MarkExercise command not implemented yet";
     public static final String MESSAGE_MARK_EXERCISE =
             "Exercise %d marked as %s for student %d (%s)";
     private final Status status;
@@ -58,6 +61,9 @@ public class MarkExerciseCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        System.out.println(status);
+        System.out.println(studentIndex);
+        System.out.println(exerciseIndex);
         List<Person> lastShownList = model.getFilteredPersonList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

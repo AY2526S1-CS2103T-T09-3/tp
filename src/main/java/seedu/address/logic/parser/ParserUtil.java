@@ -1,10 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.MarkExerciseCommandParser.INVALID_STATUS_FORMAT;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +11,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.ExerciseTracker;
 import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Lab;
 import seedu.address.model.person.LabAttendance;
@@ -45,18 +41,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-    /**
-     * Parses {@code zeroBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseZeroBasedIndex(String zeroBasedIndex) throws ParseException {
-        String trimmedIndex = zeroBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromZeroBased(Integer.parseInt(trimmedIndex));
-    }
+
     /**
      * Parses a {@code String studentId} into a {@code StudentId}.
      * Leading and trailing whitespaces will be trimmed.
@@ -179,14 +164,15 @@ public class ParserUtil {
      * @param code first letter of status
      * @return status represented by code
      */
-    public static Status parseStatus(String code) throws ParseException {
+    public static Status parseStatus(String code) {
         switch (code.toUpperCase()) {
         case "D": return Status.DONE;
         case "N": return Status.NOT_DONE;
         case "I": return Status.IN_PROGRESS;
         case "O": return Status.OVERDUE;
         default:
-            throw new ParseException(INVALID_STATUS_FORMAT + Arrays.toString(Status.values()));
+            // fallback for full names
+            return Status.valueOf(code.toUpperCase());
         }
     }
 
@@ -216,30 +202,4 @@ public class ParserUtil {
         }
         return new LabList(labs);
     }
-    /**
-     * Parses a {@code String exerciseTrackerString} into an {@code ExerciseTracker}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code exerciseTrackerString} is invalid.
-     */
-    public static ExerciseTracker parseExerciseTracker(String exerciseTrackerString) throws ParseException {
-        requireNonNull(exerciseTrackerString);
-        String trimmed = exerciseTrackerString.trim();
-
-        if (!ExerciseTracker.isValidExerciseTracker(trimmed)) {
-            throw new ParseException(ExerciseTracker.MESSAGE_CONSTRAINTS);
-        }
-
-        Status[] statuses = new Status[ExerciseTracker.NUMBER_OF_EXERCISES];
-        String[] parts = trimmed.split("\\s+");
-
-        // Now we have 3 tokens per exercise: "ex", "0:", "N"
-        for (int i = 0; i < ExerciseTracker.NUMBER_OF_EXERCISES; i++) {
-            String statusString = parts[i * 3 + 2];
-            statuses[i] = parseStatus(statusString);
-        }
-
-        return new ExerciseTracker(new ArrayList<>(Arrays.asList(statuses)));
-    }
-
 }

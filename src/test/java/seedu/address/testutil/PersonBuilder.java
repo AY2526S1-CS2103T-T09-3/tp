@@ -140,18 +140,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code exerciseTracker} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withExerciseTracker(String exerciseTrackerString) {
-        try {
-            exerciseTracker = ParserUtil.parseExerciseTracker(exerciseTrackerString);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Invalid Exercise Tracker List format"); // For developers
-        }
-        return this;
-    }
-
-    /**
      * builds a person using the fields
      * @return the person that is built
      */

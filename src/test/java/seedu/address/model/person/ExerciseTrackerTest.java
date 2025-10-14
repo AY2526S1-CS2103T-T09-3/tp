@@ -20,11 +20,6 @@ public class ExerciseTrackerTest {
     public void setUp() {
         tracker = new ExerciseTracker();
     }
-    @Test
-    public void isValidExerciseTracker_validFormat_returnsTrue() {
-        String valid = "ex 0: N ex 1: D ex 2: O ex 3: I ex 4: N ex 5: N ex 6: D ex 7: O ex 8: N ex 9: I";
-        assertTrue(ExerciseTracker.isValidExerciseTracker(valid));
-    }
 
     @Test
     public void constructor_default_initializesAllToNotDone() {

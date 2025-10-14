@@ -1,159 +1,151 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons": [
-    {
-      "studentId": "A1231230X",
-      "name": "Alice Pauline",
-      "phone": "94351253",
-      "email": "alice@example.com",
-      "address": "123, Jurong West Ave 6, #08-111",
-      "tags": ["friends"],
-      "githubUsername": "Alice",
-      "exerciseStatuses": [
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N"
-      ],
-      "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
-    },
-    {
-      "studentId": "A1231231X",
-      "name": "Benson Meier",
-      "phone": "98765432",
-      "email": "johnd@example.com",
-      "address": "311, Clementi Ave 2, #02-25",
-      "tags": ["owesMoney", "friends"],
-      "githubUsername": "Benson",
-      "exerciseStatuses": [
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N"
-      ],
-      "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
-    },
-    {
-      "studentId": "A1231232X",
-      "name": "Carl Kurz",
-      "phone": "95352563",
-      "email": "heinz@example.com",
-      "address": "wall street",
-      "tags": [],
-      "githubUsername": "Carl",
-      "exerciseStatuses": [
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N"
-      ],
-      "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
-    },
-    {
-      "studentId": "A1231233X",
-      "name": "Daniel Meier",
-      "phone": "87652533",
-      "email": "cornelia@example.com",
-      "address": "10th street",
-      "tags": ["friends"],
-      "githubUsername": "Daniel",
-      "exerciseStatuses": [
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N"
-      ],
-      "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
-    },
-    {
-      "studentId": "A1231234X",
-      "name": "Elle Meyer",
-      "phone": "9482224",
-      "email": "werner@example.com",
-      "address": "michegan ave",
-      "tags": [],
-      "githubUsername": "Elle",
-      "exerciseStatuses": [
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N"
-      ],
-      "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
-    },
-    {
-      "studentId": "A1231235X",
-      "name": "Fiona Kunz",
-      "phone": "9482427",
-      "email": "lydia@example.com",
-      "address": "little tokyo",
-      "tags": [],
-      "githubUsername": "Fiona",
-      "exerciseStatuses": [
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N"
-      ],
-      "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
-    },
-    {
-      "studentId": "A1231236X",
-      "name": "George Best",
-      "phone": "9482442",
-      "email": "anna@example.com",
-      "address": "4th street",
-      "tags": [],
-      "githubUsername": "George",
-      "exerciseStatuses": [
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N"
-      ],
-      "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
-    }
-  ]
+  "persons" : [ {
+    "studentId": "A1231230X",
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tags" : [ "friends" ],
+    "githubUsername":"Alice",
+    "exerciseStatuses": [
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE"
+    ],
+    "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
+  }, {
+    "studentId": "A1231231X",
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tags" : [ "owesMoney", "friends" ],
+    "githubUsername":"Benson",
+    "exerciseStatuses": [
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE"
+    ],
+    "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
+  }, {
+    "studentId": "A1231232X",
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "tags" : [ ],
+    "githubUsername":"Carl",
+    "exerciseStatuses": [
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE"
+    ],
+    "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
+  }, {
+    "studentId": "A1231233X",
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "tags" : [ "friends" ],
+    "githubUsername":"Daniel",
+    "exerciseStatuses": [
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE"
+    ],
+    "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
+  }, {
+    "studentId": "A1231234X",
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "tags" : [ ],
+    "githubUsername":"Elle",
+    "exerciseStatuses": [
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE"
+    ],
+    "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
+  }, {
+    "studentId": "A1231235X",
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "tags" : [ ],
+    "githubUsername":"Fiona",
+    "exerciseStatuses": [
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE"
+    ],
+    "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
+  }, {
+    "studentId": "A1231236X",
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "tags" : [ ],
+    "githubUsername":"George",
+    "exerciseStatuses": [
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE",
+      "NOT_DONE"
+    ],
+    "labAttendanceList": "L1: N L2: N L3: N L4: N L5: N L6: N L7: N L8: N L9: N L10: N "
+  } ]
 }
