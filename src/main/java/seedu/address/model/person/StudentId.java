@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's student ID in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStudentId(String)}
  */
-public class StudentId {
+public class StudentId implements Comparable<StudentId> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Student IDs should be in the format: 'A' followed by 7 digits and one capital letter "
@@ -53,5 +53,10 @@ public class StudentId {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(StudentId otherStudentId) {
+        return this.value.compareTo(otherStudentId.value);
     }
 }
