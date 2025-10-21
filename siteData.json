@@ -108,7 +108,6 @@
       "title": "User Guide",
       "headings": {
         "lambdalab-user-guide": "LambdaLab User Guide",
-        "lambdalab-is-a-desktop-app-for-cs2030s-teaching-assistants-to-manage-student-records-optimised-for-use-via-a-command-line-interface-cli-while-still-having-an-intuitive-graphical-user-interface-gui-if-you-are-a-fast-typer-lambdalab-can-help-you-track-student-information-lab-attendance-and-exercise-submissions-even-faster-than-traditional-spreadsheets-or-gui-apps": "LambdaLab is a desktop app for CS2030S Teaching Assistants to manage student records, optimised for use via a\nCommand Line Interface (CLI) while still having an intuitive Graphical User Interface (GUI). If you are a fast typer,\nLambdaLab can help you track student information, lab attendance, and exercise submissions even faster than traditional\nspreadsheets or GUI apps.",
         "table-of-contents": "Table of Contents",
         "quick-start": "Quick start",
         "features": "Features",
