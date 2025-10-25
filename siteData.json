@@ -127,6 +127,7 @@
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "undoing-the-last-command-undo": "Undoing the last command: undo",
         "blocking-a-timeslot-block-timeslot": "Blocking a timeslot : block-timeslot",
+        "unblocking-a-timeslot-unblock-timeslot": "Unblocking a timeslot : unblock-timeslot",
         "retrieving-merged-timeslot-ranges-get-timeslots": "Retrieving merged timeslot ranges: get-timeslots",
         "clearing-all-timeslots-clear-timeslots": "Clearing all timeslots : clear-timeslots",
         "exiting-the-program-exit": "Exiting the program : exit",
