@@ -1,5 +1,5 @@
 @startuml UndoSequenceDiagram-Model
-!include style.puml
+!include ../style.puml
 skinparam ArrowFontStyle plain
 
 box Model MODEL_COLOR_T1

@@ -72,27 +72,7 @@
       "headingKeywords": {}
     },
     {
-      "src": "SettingUp.md",
-      "title": "Setting up and getting started",
-      "headings": {
-        "setting-up-and-getting-started": "Setting up and getting started",
-        "setting-up-the-project-in-your-computer": "Setting up the project in your computer",
-        "before-writing-code": "Before writing code"
-      },
-      "headingKeywords": {}
-    },
-    {
-      "src": "Testing.md",
-      "title": "Testing guide",
-      "headings": {
-        "testing-guide": "Testing guide",
-        "running-tests": "Running tests",
-        "types-of-tests": "Types of tests"
-      },
-      "headingKeywords": {}
-    },
-    {
-      "src": "UserGuide.md",
+      "src": "OLD_UserGuide.md",
       "title": "User Guide",
       "headings": {
         "lambdalab-user-guide": "LambdaLab User Guide",
@@ -128,6 +108,31 @@
         "known-issues": "Known issues",
         "command-summary": "Command summary"
       },
+      "headingKeywords": {}
+    },
+    {
+      "src": "SettingUp.md",
+      "title": "Setting up and getting started",
+      "headings": {
+        "setting-up-and-getting-started": "Setting up and getting started",
+        "setting-up-the-project-in-your-computer": "Setting up the project in your computer",
+        "before-writing-code": "Before writing code"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "Testing.md",
+      "title": "Testing guide",
+      "headings": {
+        "testing-guide": "Testing guide",
+        "running-tests": "Running tests",
+        "types-of-tests": "Types of tests"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "UserGuide.md",
+      "headings": {},
       "headingKeywords": {}
     },
     {
