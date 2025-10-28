@@ -106,6 +106,7 @@
     },
     {
       "src": "UserGuide.md",
+      "title": "User Guide",
       "headings": {
         "lambdalab-user-guide": "LambdaLab User Guide",
         "about-this-guide": "About this guide",
