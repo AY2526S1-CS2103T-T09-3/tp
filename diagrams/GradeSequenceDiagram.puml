@@ -4,77 +4,63 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":GradeCommandParser" as GradeCommandParser LOGIC_COLOR
-participant ":GradeCommand" as GradeCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "g:GradeCommand" as GradeCommand LOGIC_COLOR
+participant "midx:MultiIndexCommand" as MultiIndexCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
+participant "p:Person" as Person MODEL_COLOR
+participant "gm:GradeMap" as GradeMap MODEL_COLOR
 end box
 
-[-> LogicManager : execute("grade 1 en/midterm s/30.5")
+[-> LogicManager : execute("grade 1:3 n/midterm s/y")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("grade 1 en/midterm s/30.5")
-activate AddressBookParser
-
-create GradeCommandParser
-AddressBookParser -> GradeCommandParser
-activate GradeCommandParser
-
-GradeCommandParser --> AddressBookParser
-deactivate GradeCommandParser
-
-AddressBookParser -> GradeCommandParser : parse("1 en/midterm s/30.5")
-activate GradeCommandParser
-
-create GradeCommand
-GradeCommandParser -> GradeCommand
+LogicManager -> GradeCommand : execute(model)
 activate GradeCommand
 
-GradeCommand --> GradeCommandParser
-deactivate GradeCommand
+GradeCommand -> MultiIndexCommand : execute(model)
+activate MultiIndexCommand
 
-GradeCommandParser --> AddressBookParser : g
-deactivate GradeCommandParser
-destroy GradeCommandParser
+MultiIndexCommand -> Model : getFilteredPersonList()
+activate Model
+Model --> MultiIndexCommand : list of persons [1,2,3]
+deactivate Model
 
-AddressBookParser --> LogicManager : g
-deactivate AddressBookParser
+loop while the
+    MultiIndexCommand -> GradeCommand : applyActionToPerson(model, p)
+    activate GradeCommand
 
-LogicManager -> GradeCommand : execute(m)
+    GradeCommand -> GradeMap : markExamPassed("midterm")
+    activate GradeMap
+    GradeMap --> GradeCommand
+    deactivate GradeMap
+
+    GradeCommand -> Model : setPerson(old, updated)
+    activate Model
+    Model --> GradeCommand
+    deactivate Model
+
+    GradeCommand --> MultiIndexCommand
+    deactivate GradeCommand
+end
+
+MultiIndexCommand -> GradeCommand : buildResult(updatedPersons)
 activate GradeCommand
-
-GradeCommand -> Model : getFilteredPersonList()
-activate Model
-Model --> GradeCommand : List<Person>
-deactivate Model
-
-GradeCommand -> Model : saveAddressBook()
-activate Model
-Model --> GradeCommand
-deactivate Model
-
-GradeCommand -> Model : setPerson(oldPerson, gradedPerson)
-activate Model
-Model --> GradeCommand
-deactivate Model
-
-GradeCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
-activate Model
-Model --> GradeCommand
-deactivate Model
 
 create CommandResult
-GradeCommand -> CommandResult : new CommandResult(...)
+GradeCommand -> CommandResult : new CommandResult("midterm marked as passed for: Alice, Bob, Charlie")
 activate CommandResult
+
 CommandResult --> GradeCommand
 deactivate CommandResult
-
-GradeCommand --> LogicManager : r
+GradeCommand --> MultiIndexCommand : r
 deactivate GradeCommand
+
+MultiIndexCommand --> LogicManager : r
+deactivate MultiIndexCommand
 
 [<-- LogicManager
 deactivate LogicManager

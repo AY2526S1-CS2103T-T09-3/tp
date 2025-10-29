@@ -52,6 +52,7 @@
         "common-classes": "Common classes",
         "implementation": "Implementation",
         "undo-feature": "Undo feature",
+        "feature-multi-index-inputs": "Feature: Multi-Index Inputs",
         "proposed-data-archiving": "[Proposed] Data archiving",
         "find-feature": "Find Feature:",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
