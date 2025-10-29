@@ -145,7 +145,16 @@
     },
     {
       "src": "UserGuide.md",
-      "headings": {},
+      "headings": {
+        "features": "Features",
+        "data-modifying": "Data – Modifying",
+        "mark-a-student-s-lab-attendance-marka": "Mark a student's lab attendance: marka",
+        "mark-a-student-s-exercise-for-completion-marke": "Mark a student's exercise for completion: marke",
+        "record-a-student-s-score-for-an-exam-grade": "Record a student's score for an exam: grade",
+        "visualisation": "Visualisation",
+        "miscellaneous": "Miscellaneous",
+        "non-command-feature": "Non-command Feature"
+      },
       "headingKeywords": {}
     },
     {
