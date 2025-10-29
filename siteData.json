@@ -157,7 +157,13 @@
         "retrieving-merged-timeslot-ranges-get-timeslots": "Retrieving merged timeslot ranges: get-timeslots",
         "retrieving-consultations-only-get-consultations": "Retrieving consultations only: get-consultations",
         "visualisation": "Visualisation",
+        "finding-students-find": "Finding students: find",
+        "filtering-students-filter": "Filtering students: filter",
+        "sorting-students-sort": "Sorting students: sort",
+        "listing-students-list": "Listing students: list",
         "miscellaneous": "Miscellaneous",
+        "exiting-the-application-exit": "Exiting the application: exit",
+        "opening-the-help-window-help": "Opening the help window: help",
         "non-command-features": "Non-Command Features",
         "parameters": "Parameters"
       },
