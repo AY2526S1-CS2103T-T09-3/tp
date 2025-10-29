@@ -146,14 +146,19 @@
     {
       "src": "UserGuide.md",
       "headings": {
-        "features": "Features",
+        "command-features": "Command Features",
         "data-modifying": "Data – Modifying",
-        "mark-a-student-s-lab-attendance-marka": "Mark a student's lab attendance: marka",
-        "mark-a-student-s-exercise-for-completion-marke": "Mark a student's exercise for completion: marke",
-        "record-a-student-s-score-for-an-exam-grade": "Record a student's score for an exam: grade",
+        "part-1-person-data": "Part 1: Person Data",
+        "part-2-tracking-milestones-like-labs-exercises-and-exams": "Part 2: Tracking milestones like labs, exercises and exams",
+        "blocking-a-timeslot-block-timeslot": "Blocking a timeslot: block-timeslot",
+        "unblocking-a-timeslot-unblock-timeslot": "Unblocking a timeslot : unblock-timeslot",
+        "adding-a-consultation-add-consultation": "Adding a consultation: add-consultation",
+        "retrieving-merged-timeslot-ranges-get-timeslots": "Retrieving merged timeslot ranges: get-timeslots",
+        "retrieving-consultations-only-get-consultations": "Retrieving consultations only: get-consultations",
         "visualisation": "Visualisation",
         "miscellaneous": "Miscellaneous",
-        "non-command-feature": "Non-command Feature"
+        "non-command-features": "Non-Command Features",
+        "parameters": "Parameters"
       },
       "headingKeywords": {}
     },
