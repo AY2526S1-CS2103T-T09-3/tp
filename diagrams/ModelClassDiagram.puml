@@ -16,7 +16,7 @@ Package Model as ModelPackage <<Rectangle>> {
   Class Person
   Class StudentId
   Class GithubUsername
-  Class ExerciseTracker
+  Class ExerciseList
   Class "<<interface>>\nLabAttendanceList" as LabAttendanceList
   Class LabList
   Class GradeMap
@@ -58,7 +58,7 @@ Person *--> "1" Name
 Person *--> "1" Phone
 Person *--> "1" Email
 Person *--> "1" GithubUsername
-Person *--> "1" ExerciseTracker
+Person *--> "1" ExerciseList
 Person *--> "1" LabAttendanceList
 Person *--> "1" GradeMap
 Person *--> "*" Tag
@@ -66,7 +66,7 @@ Person *--> "*" Tag
 
 
 ' Internal associations for composite objects
-ExerciseTracker *--> "10" Exercise
+ExerciseList *--> "10" Exercise
 LabList *--> "10" LabAttendance
 GradeMap *--> "4" Gradeable
 
