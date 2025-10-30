@@ -14,7 +14,7 @@ end box
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
  participant "LabList" as LabList MODEL_COLOR
-  participant "ExerciseList" as ExerciseList MODEL_COLOR
+  participant "ExerciseTracker" as ExerciseTracker MODEL_COLOR
 end box
 
 [-> LogicManager : execute("set-week <WEEK NUMBER>")
@@ -72,7 +72,7 @@ Model --> SetWeekCommand
 deactivate Model
 
 SetWeekCommand -> LabList : setCurrentWeek(currentWeekNumber)
-SetWeekCommand -> ExerciseList : setCurrentWeek(currentWeekNumber)
+SetWeekCommand -> ExerciseTracker : setCurrentWeek(currentWeekNumber)
 
 create CommandResult
 SetWeekCommand -> CommandResult
