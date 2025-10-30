@@ -10,6 +10,10 @@ package UI as UIPackage {
 
 package Model as ModelPackage {
     interface Trackable <<interface>>
+    interface GradeTracker <<interface>>
+    interface ExerciseTracker <<interface>>
+    interface LabAttendanceList <<interface>>
+
     enum TrackerColour <<enumeration>>
     class Person
     class ExerciseList
@@ -18,11 +22,16 @@ package Model as ModelPackage {
 }
 
 PersonCard *--> Person
-PersonCard --- Trackable:displays
+PersonCard --- Trackable: displays
 
-Trackable <|.. ExerciseList
-Trackable <|.. LabList
-Trackable <|.. GradeMap
+Trackable <|-- GradeTracker
+Trackable <|-- ExerciseTracker
+Trackable <|-- LabAttendanceList
+
+GradeMap ..|> GradeTracker
+ExerciseList ..|> ExerciseTracker
+LabList ..|> LabAttendanceList
+
 Person *--> ExerciseList
 Person *--> LabList
 Person *--> GradeMap
