@@ -18,6 +18,7 @@ Package Model as ModelPackage <<Rectangle>> {
   Class GithubUsername
   Class ExerciseList
   Class "<<interface>>\nExerciseTracker" as ExerciseTracker
+   Class "<<interface>>\nGradeTracker" as GradeTracker
   Class "<<interface>>\nLabAttendanceList" as LabAttendanceList
   Class LabList
   Class GradeMap
@@ -28,7 +29,6 @@ Package Model as ModelPackage <<Rectangle>> {
   Class Exercise
   Class "<<interface>>\nLabAttendance" as LabAttendance
   Class Lab
-  Class "<<interface>>\nGradeable" as Gradeable
   Class Examination
 
   Class I #FFFFFF
@@ -51,8 +51,8 @@ UniquePersonList --> "~* all" Person
 
 LabList .up.|> LabAttendanceList
 ExerciseList .up.|> ExerciseTracker
+GradeMap .up.|> GradeTracker
 Lab .up.|> LabAttendance
-Examination .up.|> Gradeable
 
 ' Person field associations
 Person *--> "1" StudentId
@@ -62,7 +62,7 @@ Person *--> "1" Email
 Person *--> "1" GithubUsername
 Person *--> "1" ExerciseTracker
 Person *--> "1" LabAttendanceList
-Person *--> "1" GradeMap
+Person *--> "1" GradeTracker
 Person *--> "*" Tag
 
 
@@ -70,7 +70,7 @@ Person *--> "*" Tag
 ' Internal associations for composite objects
 ExerciseList *--> "10" Exercise
 LabList *--> "10" LabAttendance
-GradeMap *--> "4" Gradeable
+GradeMap *--> "4" Examination
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
