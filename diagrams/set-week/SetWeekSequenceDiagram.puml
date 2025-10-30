@@ -1,0 +1,89 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SetWeekCommandParser" as SetWeekCommandParser LOGIC_COLOR
+participant "w:Week" as Week LOGIC_COLOR
+participant "s:SetWeekCommand" as SetWeekCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+ participant "LabList" as LabList MODEL_COLOR
+  participant "ExerciseTracker" as ExerciseTracker MODEL_COLOR
+end box
+
+[-> LogicManager : execute("set-week <WEEK NUMBER>")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("set-week <WEEK NUMBER>")
+activate AddressBookParser
+
+create SetWeekCommandParser
+AddressBookParser -> SetWeekCommandParser
+activate SetWeekCommandParser
+
+SetWeekCommandParser --> AddressBookParser
+deactivate SetWeekCommandParser
+
+AddressBookParser -> SetWeekCommandParser : parse("set-week <WEEK NUMBER>")
+activate SetWeekCommandParser
+
+create Week
+SetWeekCommandParser -> Week : new Week(<WEEK NUMBER>)
+activate Week
+
+Week --> SetWeekCommandParser
+deactivate Week
+
+create SetWeekCommand
+SetWeekCommandParser -> SetWeekCommand : new SetWeekCommand(w)
+activate SetWeekCommand
+
+SetWeekCommand --> SetWeekCommandParser :
+deactivate SetWeekCommand
+
+SetWeekCommandParser --> AddressBookParser : s
+deactivate SetWeekCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SetWeekCommandParser -[hidden]-> AddressBookParser
+destroy SetWeekCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SetWeekCommand : execute(m)
+activate SetWeekCommand
+
+SetWeekCommand -> Model : saveAddressBook()
+activate Model
+
+Model --> SetWeekCommand
+deactivate Model
+
+SetWeekCommand -> Model : setCurrentWeek(w)
+activate Model
+
+Model --> SetWeekCommand
+deactivate Model
+
+SetWeekCommand -> LabList : setCurrentWeek(currentWeekNumber)
+SetWeekCommand -> ExerciseTracker : setCurrentWeek(currentWeekNumber)
+
+create CommandResult
+SetWeekCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SetWeekCommand
+deactivate CommandResult
+
+SetWeekCommand --> LogicManager : r
+deactivate SetWeekCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
