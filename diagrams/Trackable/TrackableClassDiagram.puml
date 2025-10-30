@@ -3,14 +3,15 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
+skinparam ModelPackage MODEL_COLOR
 
 package UI as UIPackage {
-    class PersonCard
+    class PersonCard UI_COLOR
 }
 
 package Model as ModelPackage {
     interface Trackable <<interface>>
-    enum TrackerColour <<Enumeration>>
+    enum TrackerColour <<enumeration>>
     class Person
     class ExerciseTracker
     class LabList
@@ -18,7 +19,7 @@ package Model as ModelPackage {
 }
 
 PersonCard *--> Person
-PersonCard --- Trackable : <<display>>
+PersonCard --- Trackable:displays
 
 Trackable <|.. ExerciseTracker
 Trackable <|.. LabList
