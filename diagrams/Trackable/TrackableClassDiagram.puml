@@ -12,7 +12,7 @@ package Model as ModelPackage {
     interface Trackable <<interface>>
     enum TrackerColour <<enumeration>>
     class Person
-    class ExerciseTracker
+    class ExerciseList
     class LabList
     class GradeMap
 }
@@ -20,10 +20,10 @@ package Model as ModelPackage {
 PersonCard *--> Person
 PersonCard --- Trackable:displays
 
-Trackable <|.. ExerciseTracker
+Trackable <|.. ExerciseList
 Trackable <|.. LabList
 Trackable <|.. GradeMap
-Person *--> ExerciseTracker
+Person *--> ExerciseList
 Person *--> LabList
 Person *--> GradeMap
 Trackable ..> TrackerColour
