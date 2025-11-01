@@ -142,7 +142,7 @@ public class PersonBuilder {
         try {
             exerciseList = ParserUtil.parseExerciseTracker(exerciseListString);
         } catch (ParseException e) {
-            throw new IllegalArgumentException("Invalid Exercise Tracker List format"); // For developers
+            throw new IllegalArgumentException("Invalid Exercise Tracker format"); // For developers
         }
         return this;
     }
@@ -154,7 +154,7 @@ public class PersonBuilder {
         try {
             gradeMap = ParserUtil.parseGradeTracker(gradeMapString);
         } catch (ParseException e) {
-            throw new IllegalArgumentException("Invalid Exercise Tracker List format"); // For developers
+            throw new IllegalArgumentException("Invalid Grade Map format"); // For developers
         }
         return this;
     }
