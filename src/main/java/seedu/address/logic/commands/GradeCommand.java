@@ -30,7 +30,7 @@ public class GradeCommand extends MultiIndexCommand {
             + PREFIX_EXAM_NAME + "EXAM_NAME "
             + PREFIX_STATUS + "STATUS (y/n)\n"
             + "Example: " + COMMAND_WORD + " 1:3 " + PREFIX_EXAM_NAME + "midterm " + PREFIX_STATUS + "y\n"
-            + "Example: " + COMMAND_WORD + " 2 " + PREFIX_EXAM_NAME + "pe1 " + PREFIX_STATUS + "n\n";
+            + "Example: " + COMMAND_WORD + " 2 " + PREFIX_EXAM_NAME + "pe0 " + PREFIX_STATUS + "n\n";
 
     public static final String MESSAGE_GRADE_SUCCESS = "%s marked as %s for: %s";
     public static final String MESSAGE_FAILURE_INVALID_NAME =
