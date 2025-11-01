@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.ArrayList;
@@ -529,26 +528,6 @@ public class ParserUtil {
         return new LabAttendanceComparison(value, comparison);
     }
 
-
-    /**
-     * Ensures that prefixes of a command's required fields are used
-     * @param argumentMultimap of the command parser
-     * @param usageMessage that instructs the user of the proper format
-     * @param requiredPrefixes prefixes of fields required for the parsed command
-     * @throws ParseException thrown when a field is left empty
-     */
-    public static void validateFields(ArgumentMultimap argumentMultimap,
-                                  String usageMessage,
-                                  Prefix... requiredPrefixes) throws ParseException {
-        if (argumentMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
-        }
-        for (Prefix prefix : requiredPrefixes) {
-            if (argumentMultimap.getValue(prefix).isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
-            }
-        }
-    }
 
     /**
      * Checks if the args string contains any prefix-like patterns (e.g., "x/") that are not in the allowed list.

@@ -1,99 +1,61 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_STATUS;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.MultiIndex;
 import seedu.address.logic.commands.MarkExerciseCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 public class MarkExerciseCommandParserTest {
 
-    private MarkExerciseCommandParser parser;
+    private final MarkExerciseCommandParser parser = new MarkExerciseCommandParser();
 
-    @BeforeEach
-    public void setUp() {
-        parser = new MarkExerciseCommandParser();
-    }
-
-    /**
-     * Valid command should parse successfully.
-     * Example: "1 ei/0 s/DONE"
-     */
     @Test
-    public void parse_validArgs_returnsMarkExerciseCommand() throws Exception {
-        String input = "1 " + PREFIX_EXERCISE_INDEX + "0 " + PREFIX_STATUS + "y";
-        MarkExerciseCommand expected = new MarkExerciseCommand(
-                new MultiIndex(Index.fromZeroBased(0)), Index.fromOneBased(1), true);
-        MarkExerciseCommand result = parser.parse(input);
-        assertEquals(expected, result);
-    }
+    public void parse_validArgs_returnsMarkExerciseCommand() {
+        // "1 ei/1 s/y"
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + " "
+                + PREFIX_EXERCISE_INDEX + INDEX_FIRST_EXERCISE.getOneBased() + " "
+                + PREFIX_STATUS + "y";
 
-    /**
-     * Missing status prefix should throw ParseException.
-     */
-    @Test
-    public void parse_missingStatusPrefix_throwsParseException() {
-        String input = "marke 1" + PREFIX_EXERCISE_INDEX + "0";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(input));
-    }
-
-    /**
-     * Missing exercise index prefix should throw ParseException.
-     */
-    @Test
-    public void parse_missingExerciseIndexPrefix_throwsParseException() {
-        String input = "1 " + PREFIX_STATUS + "DONE";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(input));
-        assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkExerciseCommand.MESSAGE_USAGE), e.getMessage());
-    }
-
-    /**
-     * Invalid (non-integer) person index should throw ParseException.
-     */
-    @Test
-    public void parse_invalidPersonIndex_throwsParseException() {
-        String input = "abc " + PREFIX_EXERCISE_INDEX + "1 " + PREFIX_STATUS + "DONE";
-        assertThrows(ParseException.class, () -> parser.parse(input));
-    }
-
-    /**
-     * Invalid (negative) exercise index should throw ParseException.
-     */
-    @Test
-    public void parse_negativeExerciseIndex_throwsParseException() {
-        String input = "1 " + PREFIX_EXERCISE_INDEX + "-2 " + PREFIX_STATUS + "DONE";
-        assertThrows(ParseException.class, () -> parser.parse(input));
-    }
-
-    /**
-     * Invalid status value should throw ParseException.
-     */
-    @Test
-    public void parse_invalidStatus_throwsParseException() {
-        String input = "1 " + PREFIX_EXERCISE_INDEX + "0 " + PREFIX_STATUS + "INVALIDSTATUS";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(input));
-        assertEquals(
-                MESSAGE_INVALID_STATUS,
-                e.getMessage()
+        MarkExerciseCommand expectedCommand = new MarkExerciseCommand(
+                new MultiIndex(INDEX_FIRST_PERSON),
+                INDEX_FIRST_EXERCISE,
+                true
         );
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    /**
-     * Empty prefix value (e.g. "s/") should throw ParseException.
-     */
     @Test
-    public void parse_emptyPrefixValue_throwsParseException() {
-        String input = "1 " + PREFIX_EXERCISE_INDEX + "0 " + PREFIX_STATUS + "";
-        assertThrows(ParseException.class, () -> parser.parse(input));
+    public void parse_missingCompulsoryField_failure() {
+        String expectedMessage = String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                MarkExerciseCommand.MESSAGE_USAGE
+        );
+
+        // Missing everything
+        assertParseFailure(parser, MarkExerciseCommand.COMMAND_WORD, expectedMessage);
+
+        // Missing student index
+        assertParseFailure(parser, MarkExerciseCommand.COMMAND_WORD + " "
+                + PREFIX_EXERCISE_INDEX + INDEX_FIRST_EXERCISE.getOneBased()
+                + " " + PREFIX_STATUS + "y", expectedMessage);
+
+        // Missing exercise index
+        assertParseFailure(parser, MarkExerciseCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_STATUS + "y", expectedMessage);
+
+        // Missing status
+        assertParseFailure(parser, MarkExerciseCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_EXERCISE_INDEX + INDEX_FIRST_EXERCISE.getOneBased(), expectedMessage);
     }
 }

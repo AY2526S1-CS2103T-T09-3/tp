@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.ParserUtil.validateFields;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.MultiIndex;
@@ -34,7 +33,7 @@ public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_LAB_NUMBER, PREFIX_STATUS);
 
         // Check if required fields are present
-        validateFields(argMultimap, MarkAttendanceCommand.MESSAGE_USAGE, PREFIX_LAB_NUMBER, PREFIX_STATUS);
+        argMultimap.validateFields(MarkAttendanceCommand.MESSAGE_USAGE, PREFIX_LAB_NUMBER, PREFIX_STATUS);
         MultiIndex multiIndex;
         Index labNumber;
         boolean isAttended;

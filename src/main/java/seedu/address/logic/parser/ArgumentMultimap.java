@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,24 @@ public class ArgumentMultimap {
 
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
+
+    /**
+     * Ensures that prefixes of a command's required fields are used
+     * @param usageMessage that instructs the user of the proper format
+     * @param requiredPrefixes prefixes of fields required for the parsed command
+     * @throws ParseException thrown when a field is left empty
+     */
+    public void validateFields(String usageMessage,
+                                  Prefix... requiredPrefixes) throws ParseException {
+        if (this.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
+        }
+        for (Prefix prefix : requiredPrefixes) {
+            if (this.getValue(prefix).isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
+            }
+        }
+    }
 
     /**
      * Associates the specified argument value with {@code prefix} key in this map.

@@ -3,13 +3,14 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.ParserUtil.validateFields;
 
 import seedu.address.commons.core.index.MultiIndex;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.exceptions.InvalidIndexException;
 import seedu.address.logic.commands.GradeCommand;
+import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -24,15 +25,24 @@ public class GradeCommandParser implements Parser<GradeCommand> {
     private static final String EMPTY_PREFIX_FORMAT = "Prefix %s : has empty value!";
 
     @Override
-    public GradeCommand parse(String userInput) throws ParseException {
-        requireNonNull(userInput);
-        ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_EXAM_NAME, PREFIX_STATUS);
+    public GradeCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
+        ParserUtil.verifyNoUnwantedPrefixes(args, PREFIX_LAB_NUMBER, PREFIX_STATUS);
+
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_LAB_NUMBER, PREFIX_STATUS);
+
+        // Parse exception directly goes to AddressBook Parser
+        argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_LAB_NUMBER, PREFIX_STATUS);
+
+        // Check if required fields are present
+        argumentMultimap.validateFields(MarkAttendanceCommand.MESSAGE_USAGE, PREFIX_LAB_NUMBER, PREFIX_STATUS);
         MultiIndex studentIndex;
         String examName;
         boolean isPassed;
         //ensure all the prefixes are present
-        validateFields(argumentMultimap, GradeCommand.MESSAGE_USAGE, PREFIX_EXAM_NAME, PREFIX_STATUS);
+        argumentMultimap.validateFields(GradeCommand.MESSAGE_USAGE, PREFIX_EXAM_NAME, PREFIX_STATUS);
         // Parse the "status" field (s/)
         isPassed = ParserUtil.parseStatus(argumentMultimap.getValue(PREFIX_STATUS).orElseThrow(()
                 -> new ParseException(
