@@ -71,8 +71,8 @@ public class GradeCommandTest {
         MultiIndex multiIndex = new MultiIndex(INDEX_FIRST_PERSON,
                 seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON);
 
-        // Create a GradeCommand to mark "pe1" as passed for all three
-        GradeCommand command = new GradeCommand(multiIndex, "pe1", true);
+        // Create a GradeCommand to mark "pe0" as passed for all three
+        GradeCommand command = new GradeCommand(multiIndex, "pe0", true);
 
         // Copy model and update all three persons
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -81,7 +81,7 @@ public class GradeCommandTest {
         for (int i = 0; i < 3; i++) {
             Person person = model.getFilteredPersonList().get(i);
             GradeTracker updatedGradeMap = person.getGradeTracker().copy();
-            updatedGradeMap.markExamPassed("pe1");
+            updatedGradeMap.markExamPassed("pe0");
             Person gradedPerson = new PersonBuilder(person)
                     .withGradeMap(updatedGradeMap.toString())
                     .build();
@@ -96,9 +96,9 @@ public class GradeCommandTest {
 
         String expectedMessage = String.format(
                 GradeCommand.MESSAGE_GRADE_SUCCESS,
-                "pe1",
+                "pe0",
                 "passed",
-                affectedNames.toString()
+                affectedNames
         );
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
