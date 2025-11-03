@@ -55,7 +55,6 @@
         "feature-undo-command": "Feature: Undo Command",
         "feature-multi-index-input-support": "Feature: Multi-Index Input Support",
         "feature-displaying-trackable-data": "Feature: Displaying Trackable Data",
-        "example": "Example",
         "feature-find-command": "Feature: Find Command",
         "feature-set-week-command": "Feature: Set Week Command",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
