@@ -42,6 +42,11 @@
       "headings": {
         "lambdalab-developer-guide": "LambdaLab Developer Guide",
         "acknowledgements": "Acknowledgements",
+        "project-origin": "Project Origin",
+        "idea-inspiration": "Idea Inspiration",
+        "third-party-libraries": "Third-Party Libraries",
+        "development-tools": "Development Tools",
+        "ai-assistance": "AI Assistance",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
         "architecture": "Architecture",
